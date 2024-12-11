@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Database Final Project Dao, Rett</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+          crossorigin="anonymous"></script>
+
+  <script src="serverAPI.js"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+<p id="errmsg" class="text-danger visually-hidden"></p>
+<label for="selector">Select query to run:</label>
+<select id="selector">
+  <!--3. List the number of videos for each video category.
+4. List the number of videos for each video category where the inventory is non-zero.
+5. For each actor, list the video categories that actor has appeared in.
+6. Which actors have appeared in movies in different video categories?
+7. Which actors have not appeared in a comedy?
+8. Which actors have appeared in both a comedy and an action adventure movie?
+-->
+  <option value="1">--</option>
+  <option value="3">3. List the number of videos for each video category.</option>
+  <option value="4">4. List the number of videos for each video category where the inventory is non-zero.</option>
+  <option value="5">5. For each actor, list the video categories that actor has appeared in.</option>
+  <option value="6">6. Which actors have appeared in movies in different video categories?</option>
+  <option value="7">7. Which actors have not appeared in a comedy?</option>
+  <option value="8">8. Which actors have appeared in both a comedy and an action adventure movie?</option>
+</select>
+<div id="cards" class="container"></div>
+</body>
+</html>
