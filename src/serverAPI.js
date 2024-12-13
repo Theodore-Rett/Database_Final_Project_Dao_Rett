@@ -5,7 +5,7 @@
  * 6. Which actors have appeared in movies in different video categories?
  * 7. Which actors have not appeared in a comedy?
  * 8. Which actors have appeared in both a comedy and an action adventure movie?
- * 9. Which actors have only appeared in mystery movies?
+ * 9. For each director, show their longest movie and category associated with that movie sorted by longest movies to shortest movies.
  */
 
 const query3 = [
@@ -136,27 +136,24 @@ const query8 = [
 
 const query9 = [
     {
-        $unwind: {
-            path: '$actors',
-            preserveNullAndEmptyArrays: true
-        }
-    },
-    {
         $group: {
-            _id: '$actors',
-            categories: { $addToSet: '$category' }
+            _id: '$director',
+            longestMovie: { $max: '$duration' },
+            doc: { $first: '$$ROOT' }
         }
     },
     {
         $project: {
             _id: 0,
-            actor: '$_id',
-            categories: '$categories'
+            director: '$_id',
+            name: '$doc.name',
+            category: '$doc.category',
+            duration: '$longestMovie'
         }
     },
     {
-        $match: {
-            categories: { $eq: ['Mystery'] }
+        $sort: {
+            duration: -1
         }
     }
 ]
