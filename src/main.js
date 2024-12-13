@@ -57,14 +57,16 @@ const onSelectChange = async () => {
     // const selectorElement = document.getElementById("querySelect");
     const query = selectorElement.value;
     console.log("I was selected");
+    console.log(query);
 
     try {
         if (selectorElement.value === 1) {
-            doLoadRecordings();
+            await doLoadRecordings();
         } else {
-            const results = await conductQuery(queryMap[query]);
-            displayResults(results);
-        }
+             const results = await conductQuery(queryMap[query]);
+             console.log(results);
+             displayResults(results);
+         }
     } catch (error) {
         displayError(`Select Change Error: ${error.message}`);
     }

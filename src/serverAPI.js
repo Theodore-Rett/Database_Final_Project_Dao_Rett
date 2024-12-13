@@ -5,9 +5,7 @@
  * 6. Which actors have appeared in movies in different video categories?
  * 7. Which actors have not appeared in a comedy?
  * 8. Which actors have appeared in both a comedy and an action adventure movie?
- *
- * 9. Come up with your own question that requires you join at least three tables. List the question, the SQL you used to answer it, and the answer itself.
- *
+ * 9. Which actors have only appeared in mystery movies?
  */
 
 const query3 = [
@@ -136,7 +134,32 @@ const query8 = [
     }
 ]
 
-const query9 = []
+const query9 = [
+    {
+        $unwind: {
+            path: '$actors',
+            preserveNullAndEmptyArrays: true
+        }
+    },
+    {
+        $group: {
+            _id: '$actors',
+            categories: { $addToSet: '$category' }
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            actor: '$_id',
+            categories: '$categories'
+        }
+    },
+    {
+        $match: {
+            categories: { $eq: ['Mystery'] }
+        }
+    }
+]
 
 const SERVER_URL = 'http://localhost:3000';
 const SERVER_QUERY_URL = `${SERVER_URL}/query/%s`;
