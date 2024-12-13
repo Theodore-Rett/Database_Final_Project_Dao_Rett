@@ -31,7 +31,7 @@ const recordingSchema = new mongoose.Schema({
 
 const recording_model = mongoose.model('Recordings', recordingSchema, 'Recordings');
 
-app.get('/', async (req, res) => {
+app.get('/data', async (req, res) => {
     try {
         const recordings = await recording_model.find();
         res.json(recordings);

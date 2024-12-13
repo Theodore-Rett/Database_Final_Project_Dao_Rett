@@ -166,13 +166,12 @@ const conductQuery = async (query) => {
 }
 
 const getRecordings = async () => {
-    const results = await fetch(SERVER_URL+"/");
+    const results = await fetch(SERVER_URL+"/data");
     if (!results.ok) {
         throw new Error(`Server Error: ${results.statusMessage}`);
     }
 
     const json = await results.json();
-
     if (json.status === 'error') {
         throw new Error(`API Error: ${json.message}`);
     }
