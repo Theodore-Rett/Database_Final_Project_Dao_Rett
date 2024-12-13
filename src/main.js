@@ -13,10 +13,13 @@ const hideError = () => {
 }
 
 const displayResults = (results) => {
+    const cards = document.getElementById("cards");
+    cards.innerHTML = ''; // Clear all previously displayed cards
+
+
     if (!results.length) {
         displayError('Display Results Error: No results found.');
     }
-
 
     results.forEach((result) => {
         doAddCard(result);
