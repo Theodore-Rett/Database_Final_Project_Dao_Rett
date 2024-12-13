@@ -1,3 +1,5 @@
+let selectorElement;
+
 const displayError = (error) => {
     const errorElement = document.getElementById("errmsg");
     errorElement.innerText = error;
@@ -9,8 +11,6 @@ const hideError = () => {
     errorElement.innerText = '';
     errorElement.classList.add('visually-hidden');
 }
-
-
 
 const displayResults = (results) => {
     if (!results.length) {
@@ -54,11 +54,12 @@ const doLoadRecordings = async () => {
 }
 
 const onSelectChange = async () => {
-    const select = document.getElementById("querySelect");
-    const query = select.value;
+    // const selectorElement = document.getElementById("querySelect");
+    const query = selectorElement.value;
+    console.log("I was selected");
 
     try {
-        if (select.value === 1) {
+        if (selectorElement.value === 1) {
             doLoadRecordings();
         } else {
             const results = await conductQuery(queryMap[query]);
@@ -71,4 +72,6 @@ const onSelectChange = async () => {
 
 window.onload = () => {
     doLoadRecordings();
+    selectorElement = document.getElementById("selector");
+    selectorElement.addEventListener("change", onSelectChange);
 }
